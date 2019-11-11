@@ -10,6 +10,7 @@ function appendChat(chat, container) {
   const message = clone.querySelector('.message');
   const chatImage = clone.querySelector('.chat-image');
 
+  li.setAttribute('id', chat.key);
   name.innerText = chat.displayName;
   avatar.setAttribute('src', chat.photoURL);
   message.innerText = chat.content;
@@ -21,6 +22,13 @@ function appendChat(chat, container) {
   }
 
   chatContainer.appendChild(li);
+}
+
+function updateChat(chat) {
+  const chatNode = document.getElementById(chat.key);
+  if (!chatNode) { return; }
+  const message = chatNode.querySelector('.message');
+  message.innerText = chat.content;
 }
 
 function displayUserInfo(user) {

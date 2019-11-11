@@ -20,19 +20,28 @@ function checkConnection () {
 }
 
 function getChats() {
-  console.log('getChats');
   const chatContainer = document.getElementById('chats');
-  if (chatContainer) {
-    const chatsRef = db.ref('chats');
-    chatsRef.on('child_added', data => {
-      if (data.val().uid) {
-        appendChat(data.val(), 'chats');
-        window.scrollTo(0,document.body.scrollHeight);
-      }
-    }, error => {
-      console.error(error);
-    });
-  }
+  if (!chatContainer) { return; }
+
+  const chatsRef = db.ref('chats');
+  chatsRef.on('child_added', data => {
+    if (data.val().uid) {
+      const chat = { ...data.val(), key: data.key };
+      appendChat(chat, 'chats');
+      window.scrollTo(0,document.body.scrollHeight);
+    }
+  }, error => {
+    console.error(error);
+  });
+
+  chatsRef.on('child_changed', data => {
+    if (data.val().uid) {
+      const chat = { ...data.val(), key: data.key };
+      updateChat(chat, 'chats');
+    }
+  }, error => {
+    console.error(error);
+  });
 }
 
 firebase.auth().onAuthStateChanged(_user => {
@@ -114,6 +123,7 @@ function createChat(content, chatImageURL) {
   return chat;
 }
 
+//  TODO: uncomment to call search api
 function onSearch(event) {
   event.preventDefault();
   input = document.getElementById('email');

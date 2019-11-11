@@ -10,7 +10,7 @@ exports.dbOnCreate_Chats_Update = functions.database.ref('chats/{chatId}')
     const chat = snapshot.val();
     if (chat.content) {
       console.log('Replacing lol with emoji');
-      chat.content = chat.content.replace(' LOL ', '😂');
+      chat.content = chat.content.replace('LOL', '😂');
       return snapshot.ref.update(chat);
     }
   });
