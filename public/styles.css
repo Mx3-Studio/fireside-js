@@ -1,0 +1,161 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway:400,700';
+
+body {
+  --primary: #F88600;
+  --secondary: #FFAF01;
+  --tertiary: #FFCC01;
+  --links: #26afff;
+  --dark: #404040;
+  --light: #d3caca;
+  --border: solid 1px var(--light);
+  --typeface: 'Raleway', sans-serif;
+
+  font-family: var(--typeface);
+  color: var(--dark);
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  color: var(--primary);
+}
+h2 {
+  color: var(--secondary);
+}
+
+a:link,
+a:visited {
+  color: var(--links);
+}
+
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+main {
+  padding: 1rem 1rem 0;
+  box-sizing: border-box;
+}
+
+.chats {
+  padding-left: 0;
+}
+.chats li {
+  margin-bottom: 1rem;
+  list-style-type: none;
+}
+.chats li p,
+.user-info p {
+  margin: 0;
+  margin-left: 3rem;
+  white-space: pre-wrap;
+}
+.avatar {
+  width: 2.2rem;
+  float: left;
+  border-radius: 50%;
+}
+.chats .name {
+  font-weight: bold;
+}
+img.chat-image {
+  display: block;
+  max-width: calc(100% - 3rem);
+  margin-left: 3rem;
+}
+
+.user-info > div {
+  border: var(--border);
+  box-sizing: border-box;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.fireside-app form {
+  margin: 1rem -1rem 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  position: sticky;
+  bottom: 3rem;
+  background: white;
+  border-top: var(--border);
+  display: flex;
+}
+.fireside-app form.search {
+  border: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.fireside-app input {
+  box-sizing: border-box;
+  display: block;
+  font-family: var(--typeface);
+  border: var(--border);
+  border-radius: 4px 0 0  4px;
+  padding: .5rem;
+  width: 100%;
+  flex-grow: 1;
+}
+.fireside-app input[disabled] {
+  background: var(--light);
+}
+
+.image-upload {
+  position: relative;
+}
+.fireside-app input[type="file"] {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.fireside-app button,
+.no-user a {
+  font-family: var(--typeface);
+  background: var(--tertiary);
+  border-radius: 4px;
+  border: none;
+  padding: .5rem 1rem;
+  text-transform: uppercase;
+  font-size: .875rem;
+  letter-spacing: .0625rem;
+}
+.fireside-app button:hover,
+.fireside-app button:focus,
+.no-user a:hover,
+.no-user a:focus {
+  background: var(--secondary);
+  cursor: pointer;
+}
+.fireside-app button[disabled] { background: var(--light); }
+.fireside-app form button { border-radius: 0 4px 4px 0; }
+.fireside-app.user-info button { margin-bottom: 1rem; }
+.fireside-app .image-upload button {
+  border-radius: 0;
+  background: white;
+  border: var(--border);
+  border-left: none;
+  border-right: none;
+}
+.fireside-app .image-upload button:hover,
+.fireside-app .image-upload button:focus {
+  background: rgb(255, 239, 174);
+}
+.fireside-app .image-upload button[disabled] {
+  background: var(--light);
+}
+
+.no-user {
+  margin-bottom: 1rem;
+}
+.no-user a {
+  color: var(--dark);
+  text-decoration: none;
+}

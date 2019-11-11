@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+
+<head>
+  <title>Fireside</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="icon" href="./favicon.ico">
+</head>
+
+<body class="fireside-app">
+
+  <fireside-header></fireside-header>
+
+  <main>
+    <h1>Fireside Chat</h1>
+    <ul class="chats" id="chats"></ul>
+    <form id="chatForm">
+      <input id="newMessage" type="text" name="message" maxlength="2000" aria-label="message" required>
+      <div class="image-upload">
+        <button aria-label="attach-file" type="button" onclick="imageUpload()">
+          <i class="material-icons">attach_file</i>
+        </button>
+        <input aria-hidden="true" type="file" name="image" accept="image/*" class="image-upload" id="uploadField" onchange="uploadImage(event)">
+      </div>
+      <button type="submit" onclick="onSubmit(event)" aria-label="submit chat">
+        <i class="material-icons" aria-hidden="true">send</i>
+      </button>
+    </form>
+  </main>
+
+  <template id="chat">
+    <li class="clearfix">
+      <img class="avatar">
+      <p class="name"></p>
+      <img class="chat-image">
+      <p class="message"></p>
+    </li>
+  </template>
+
+  <fireside-footer></fireside-footer>
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/7.3.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script defer src="/__/firebase/7.3.0/firebase-auth.js"></script>
+  <script defer src="/__/firebase/7.3.0/firebase-database.js"></script>
+  <script defer src="/__/firebase/7.3.0/firebase-storage.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+
+  <!-- App JS -->
+  <script defer src="components.js"></script>
+  <script defer src="scripts.js"></script>
+
+</body>
+</html>

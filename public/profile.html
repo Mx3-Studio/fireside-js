@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+
+<head>
+  <title>Profile</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+  <fireside-header></fireside-header>
+
+  <main>
+    <h1>Profile</h1>
+    <div id="userContainer"></div>
+  </main>
+
+  <fireside-footer></fireside-footer>
+
+
+  <template id="loggedIn">
+    <div class="fireside-app user-info">
+      <h2>You are logged in as:</h2>
+      <div class="clearfix">
+        <img class="avatar">
+        <p><span>Name: </span><span class="name"></span></p>
+        <p><span>UID: </span><span class="uid"></span></p>
+      </div>
+      <button type="button" onclick="logout()">Logout</a>
+    </div>
+  </template>
+
+  <template id="noUser">
+    <div class="no-user">
+      <h2>You are not logged in</h2>
+      <p>Please login</p>
+      <a href="./login.html">Login</a>
+    </div>
+  </template>
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/7.3.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script defer src="/__/firebase/7.3.0/firebase-auth.js"></script>
+  <script defer src="/__/firebase/7.3.0/firebase-database.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+
+  <!-- App JS -->
+  <script defer src="components.js"></script>
+  <script defer src="./scripts.js"></script>
+
+</body>
+</html>
