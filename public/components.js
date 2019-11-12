@@ -144,7 +144,7 @@ function handleDisable(user) {
       const footer = document.createElement('footer');
       footer.innerHTML = `
         <div class="social-media">
-          <a target="_blank" href="https://github.com/Mx3-Studio/fireside"><i class="fa fa-github"
+          <a target="_blank" href="https://github.com/Mx3-Studio/fireside-js"><i class="fa fa-github"
               aria-hidden="true"></i><span>GitHub</span></a>
         </div>
         <div class="copyright">
