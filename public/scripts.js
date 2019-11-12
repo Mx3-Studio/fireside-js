@@ -8,40 +8,23 @@ let db, user, file;
 
   // get chats
   getChats();
-  getChatsByEmail('tiny@dowden.us');
 })();
 
 function checkConnection () {
-  db.ref('check').once('value').then((snapshot) => {
-    console.log(snapshot.val());
-  }, err => {
-    console.error(err);
-  });
+  //  checks to sure connection to DB is working
+  // db.ref('check').once('value').then((snapshot) => {
+  //   console.log(snapshot.val());
+  // }, err => {
+  //   console.error(err);
+  // });
 }
 
 function getChats() {
   const chatContainer = document.getElementById('chats');
   if (!chatContainer) { return; }
 
-  const chatsRef = db.ref('chats');
-  chatsRef.on('child_added', data => {
-    if (data.val().uid) {
-      const chat = { ...data.val(), key: data.key };
-      appendChat(chat, 'chats');
-      window.scrollTo(0,document.body.scrollHeight);
-    }
-  }, error => {
-    console.error(error);
-  });
-
-  chatsRef.on('child_changed', data => {
-    if (data.val().uid) {
-      const chat = { ...data.val(), key: data.key };
-      updateChat(chat, 'chats');
-    }
-  }, error => {
-    console.error(error);
-  });
+  // TODO listen to chats when they are added  
+  //  TODO Listen to chats when updated by cloud function
 }
 
 firebase.auth().onAuthStateChanged(_user => {
@@ -80,20 +63,20 @@ function onSubmit(event) {
   if (!newMessage && !file) { return; }
   // handle image
   if (file) {
-    const storageRef = firebase.storage().ref();
-    const imageLocation = 'images/' + user.uid + '/' + Date.parse(new Date()) + '/' + file.name;
-    imageRef = storageRef.child(imageLocation);
-    uploadTask = imageRef.put(file);
-    uploadTask.on('state_changed', snapshot => {
-      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('Upload is ' + progress + '% done');
-    });
-    uploadTask.then((snapshot) => {
-      return snapshot.ref.getDownloadURL();
-    }).then(downloadURL => {
-      submitChat(downloadURL);
-      file = null;
-    });
+    // TODO create storage ref
+    // const imageLocation = 'images/' + user.uid + '/' + Date.parse(new Date()) + '/' + file.name;
+    // imageRef = storageRef.child(imageLocation);
+    // TODO create upload task
+    // uploadTask.on('state_changed', snapshot => {
+    //   var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //   console.log('Upload is ' + progress + '% done');
+    // });
+    // uploadTask.then((snapshot) => {
+      // TODO get Download URL
+    // }).then(downloadURL => {
+      // submitChat(downloadURL);
+      // file = null;
+    // });
   } else {
     submitChat();
   }
@@ -103,13 +86,7 @@ function submitChat(chatImageURL) {
   const input = document.getElementById('newMessage');
   const newMessage = input.value;
   const payload = createChat(newMessage, chatImageURL);
-  db.ref('chats').push(payload)
-  .then(() => {
-    input.value = null;
-  })
-  .catch(error => {
-    console.error(error);
-  });
+  // TODO write payload to firebase
 }
 
 function createChat(content, chatImageURL) {
@@ -126,20 +103,20 @@ function createChat(content, chatImageURL) {
 //  TODO: uncomment to call search api
 function onSearch(event) {
   event.preventDefault();
-  input = document.getElementById('email');
-  if (!input.value) { return; }
-  getChatsByEmail(input.value)
-  .then(chats => {
-    const resultsContainer = document.getElementById('searchResults');
-    resultsContainer.innerHTML = '';
-    if (chats.code) {
-      handleSearchError();
-      return;
-    }
-    Object.values(chats).forEach(chat => {
-      appendChat(chat, 'searchResults');
-    });
-  });
+  // input = document.getElementById('email');
+  // if (!input.value) { return; }
+  // getChatsByEmail(input.value)
+  // .then(chats => {
+  //   const resultsContainer = document.getElementById('searchResults');
+  //   resultsContainer.innerHTML = '';
+  //   if (chats.code) {
+  //     handleSearchError();
+  //     return;
+  //   }
+  //   Object.values(chats).forEach(chat => {
+  //     appendChat(chat, 'searchResults');
+  //   });
+  // });
 }
 
 function handleSearchError() {
